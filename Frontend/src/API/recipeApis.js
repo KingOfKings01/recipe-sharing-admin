@@ -4,13 +4,16 @@ import axios from 'axios';
 const API_URL = `${import.meta.env.VITE_API}/recipes`;
 
 // Function to get all recipes
-export async function getRecipes() {
+export async function getUserRecipes(userUuid) {
   try {
-    const response = await axios.get(API_URL, {
+    
+    const response = await axios.get(`${API_URL}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Pass the token
+        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Authentication token
+        'x-user-uuid': userUuid, // User's UUID
       },
     });
+    console.log(response.data);
     return response.data;
   } catch (err) {
     throw new Error(

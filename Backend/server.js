@@ -16,7 +16,7 @@ app.use(
     origin: process.env.SITE_URL,
     methods: "GET, POST, PUT, DELETE",
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-user-uuid"], 
   })
 );
 

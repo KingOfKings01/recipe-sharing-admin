@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllUsers, approveUser, banUser } from "../API/userApis"; // Adjust the path to your userApis file
 
 export default function Home() {
@@ -68,7 +68,10 @@ export default function Home() {
                     {users.map(user => (
                         <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.name}</td>
+                            <td>
+                                {/* Create a link on the user's name */}
+                                <Link to={`/user/${user.id}/recipes`}>{user.name}</Link>
+                            </td>
                             <td>{user.email}</td>
                             <td>{user.approve ? "Approved" : "Banned"}</td>
                             <td>
