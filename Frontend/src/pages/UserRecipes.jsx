@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+    Link,
     useParams,
     // useNavigate 
 } from "react-router-dom";
@@ -36,7 +37,7 @@ export default function UserRecipes() {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>User&#39;s Recipes</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
             {recipes.length === 0 ? (
@@ -52,7 +53,7 @@ export default function UserRecipes() {
                     <tbody>
                         {recipes.map((recipe) => (
                             <tr key={recipe.id}>
-                                <td>{recipe.title}</td>
+                                <td><Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link></td>
                                 <td>
                                     <button onClick={() => handleDelete(recipe.id)}>Delete</button>
                                 </td>

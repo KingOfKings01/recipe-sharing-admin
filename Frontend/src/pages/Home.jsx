@@ -51,13 +51,13 @@ export default function Home() {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>Admin Dashboard</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No.</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Status</th>
@@ -65,9 +65,9 @@ export default function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(user => (
+                    {users.map((user, index) => (
                         <tr key={user.id}>
-                            <td>{user.id}</td>
+                            <td>{index+1}</td>
                             <td>
                                 {/* Create a link on the user's name */}
                                 <Link to={`/user/${user.id}/recipes`}>{user.name}</Link>

@@ -1,4 +1,5 @@
 import Recipe from '../models/Recipe.js';
+import User from '../models/User.js';
 
 export const getAllRecipes = async (req, res) => {
   try {
@@ -8,7 +9,6 @@ export const getAllRecipes = async (req, res) => {
     if (!userUuid) {
       return res.status(400).json({ message: 'User UUID is required' });
     }
-
 
     // Fetch recipes only created by the user
     const recipes = await Recipe.findAll({
@@ -21,6 +21,29 @@ export const getAllRecipes = async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch recipes' });
   }
 };
+
+
+// Get a single recipe by ID
+export const getRecipeById = async (req, res) => {
+  try {
+
+    // Fetch the recipe along with the associated user
+    const recipe = await Recipe.findByPk(req.params.id, {
+      include: {
+        model: User,
+        attributes: ['id', 'name'],
+      }
+    });
+
+    if (!recipe) return res.status(404).json({ message: "Recipe not found" });
+
+    res.status(200).json(recipe);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 
 export const deleteRecipe = async (req, res) => {

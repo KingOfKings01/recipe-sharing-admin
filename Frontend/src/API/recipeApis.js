@@ -13,7 +13,6 @@ export async function getUserRecipes(userUuid) {
         'x-user-uuid': userUuid, // User's UUID
       },
     });
-    console.log(response.data);
     return response.data;
   } catch (err) {
     throw new Error(
@@ -33,6 +32,7 @@ export async function getRecipeById(id) {
     });
     return response.data;
   } catch (err) {
+    console.log(err.message);
     throw new Error(
       err?.response?.data?.message ||
       `Something went wrong while fetching the recipe. Please try again later.`

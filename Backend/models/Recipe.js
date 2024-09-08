@@ -14,6 +14,10 @@ const Recipe = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     ingredients: {
       type: DataTypes.JSONB, // Store ingredients as a JSON array
       allowNull: false,

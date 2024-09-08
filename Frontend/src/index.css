@@ -18,3 +18,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+.container {
+  padding: 10px 8vw;
+}
+
+li {
+  list-style: none;
+}
